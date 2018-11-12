@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!-- This highly inefficient code presented to you by Xandawesome -->
+
+<html>
+	<head>
+		<title>Primer</title>
+	</head>
+	<body>
+		<h1>Prime Finder</h1>
+		<h4>By Xandawesome</h4>
+		<div>
+			<button onclick="go('isPrime')">Is my number prime?</button>
+			<button onclick="go('coPrime')">Are my numbers co-prime?</button>
+		</div>
+		<hr>
+		<div id="div_isPrime">
+			<h2>Is my number prime?</h2>
+			Enter any number here: <input id="input_isPrime_number"></input>
+			<button onclick="isPrime()">Is it prime?</button>
+			<p id="text_isPrime">Yes/No</p>
+		</div>
+		<div id="div_coPrime" style="display:none">
+			<h2>Are my numbers co-prime?</h2>
+			Enter first number here: <input id="input_coPrime_number_1"></input>
+			Enter second number here: <input id="input_coPrime_number_2"></input>
+			<button onclick="coPrime()">Are they co-prime?</button>
+			<p id="text_coPrime">Yes/No</p>
+		</div>
+	</body>
+</html>
+
+<script>
+	function go(goWhere) {
+		document.getElementById("div_isPrime").style.display = "none";
+		document.getElementById("div_coPrime").style.display = "none";
+		if (goWhere == "isPrime") {
+			document.getElementById("div_isPrime").style.display = "block";
+		}else if (goWhere == "coPrime") {
+			document.getElementById("div_coPrime").style.display = "block";
+		}
+	}
+	
+	function isPrime() {
+		document.getElementById("text_isPrime").innerHTML = "Analyzing... May take some time...";
+		var num = document.getElementById("input_isPrime_number").value;
+		var factors = [];
+		for (i = 2; i < (num / 2 + 1); i++) {
+			if (num % i == 0) {
+				factors[factors.length] = i;
+			}
+		}
+		if (factors.length == 0) {
+			document.getElementById("text_isPrime").innerHTML = num + " is prime.";
+		} else {
+			document.getElementById("text_isPrime").innerHTML = num + " is not prime. It's factors are: " + factors.join(", ") + ".";
+		}
+	}
+	
+	function coPrime() {
+		document.getElementById("text_coPrime").innerHTML = "Analyzing... May take some time...";
+		var num1 = document.getElementById("input_coPrime_number_1").value;
+		var num2 = document.getElementById("input_coPrime_number_2").value;
+		var factors = [];
+		var factorsFinal = [];
+		for (i = 2; i < num1 + 1; i++) {
+			if (num1 % i == 0) {
+				factors[factors.length] = i;
+			}
+		}
+		for (i = 0; i < factors.length; i++) {
+			if (num2 % factors[i] == 0) {
+				factorsFinal[factorsFinal.length] = factors[i];
+			}
+		}
+		if (factorsFinal.length == 0) {
+			document.getElementById("text_coPrime").innerHTML = num1 + " and " + num2 + " are co-prime.";
+		} else {
+			document.getElementById("text_coPrime").innerHTML = num1 + " and " + num2 + " are not co-prime. Their shared factors are: " + factorsFinal.join(", ") + ".";
+		}
+	}
+</script>
