@@ -42,41 +42,49 @@
 	}
 	
 	function isPrime() {
-		document.getElementById("text_isPrime").innerHTML = "Analyzing... May take some time...";
 		var num = document.getElementById("input_isPrime_number").value;
-		var factors = [];
-		for (i = 2; i < (num / 2 + 1); i++) {
-			if (num % i == 0) {
-				factors[factors.length] = i;
+		if (num > 0) {
+			document.getElementById("text_isPrime").innerHTML = "Analyzing... May take some time..."; // This still doesn't work :/
+			var factors = [];
+			for (i = 2; i < (num / 2 + 1); i++) {
+				if (num % i == 0) {
+					factors[factors.length] = i;
+				}
 			}
-		}
-		if (factors.length == 0) {
-			document.getElementById("text_isPrime").innerHTML = num + " is prime.";
+			if (factors.length == 0) {
+				document.getElementById("text_isPrime").innerHTML = num + " is prime.";
+			} else {
+				document.getElementById("text_isPrime").innerHTML = num + " is not prime. It's factors are: " + factors.join(", ") + ".";
+			}
 		} else {
-			document.getElementById("text_isPrime").innerHTML = num + " is not prime. It's factors are: " + factors.join(", ") + ".";
+			document.getElementById("text_isPrime").innerHTML = "Please enter a positive number."
 		}
 	}
 	
 	function coPrime() {
-		document.getElementById("text_coPrime").innerHTML = "Analyzing... May take some time...";
 		var num1 = document.getElementById("input_coPrime_number_1").value;
 		var num2 = document.getElementById("input_coPrime_number_2").value;
-		var factors = [];
-		var factorsFinal = [];
-		for (i = 2; i < num1 + 1; i++) {
-			if (num1 % i == 0) {
-				factors[factors.length] = i;
+		if (num1 > 0 && num2 > 0) {
+			document.getElementById("text_coPrime").innerHTML = "Analyzing... May take some time...";
+			var factors = [];
+			var factorsFinal = [];
+			for (i = 2; i < num1 + 1; i++) {
+				if (num1 % i == 0) {
+					factors[factors.length] = i;
+				}
 			}
-		}
-		for (i = 0; i < factors.length; i++) {
-			if (num2 % factors[i] == 0) {
-				factorsFinal[factorsFinal.length] = factors[i];
+			for (i = 0; i < factors.length; i++) {
+				if (num2 % factors[i] == 0) {
+					factorsFinal[factorsFinal.length] = factors[i];
+				}
 			}
-		}
-		if (factorsFinal.length == 0) {
-			document.getElementById("text_coPrime").innerHTML = num1 + " and " + num2 + " are co-prime.";
+			if (factorsFinal.length == 0) {
+				document.getElementById("text_coPrime").innerHTML = num1 + " and " + num2 + " are co-prime.";
+			} else {
+				document.getElementById("text_coPrime").innerHTML = num1 + " and " + num2 + " are not co-prime. Their shared factors are: " + factorsFinal.join(", ") + ".";
+			}
 		} else {
-			document.getElementById("text_coPrime").innerHTML = num1 + " and " + num2 + " are not co-prime. Their shared factors are: " + factorsFinal.join(", ") + ".";
+			document.getElementById("text_coPrime").innerHTML = "Both numbers must be positive."
 		}
 	}
 </script>
